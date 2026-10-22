@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Game project. No PackageReferences allowed (see docs/decisions.md). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CastleAdventure</RootNamespace>
+    <AssemblyName>CastleAdventure</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CastleAdventure.Tests" />
+  </ItemGroup>
+
+</Project>

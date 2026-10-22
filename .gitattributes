@@ -1,0 +1,5 @@
+# Normalize text files to CRLF on checkout (Windows project; matches .editorconfig).
+* text=auto eol=crlf
+
+*.png binary
+*.ico binary

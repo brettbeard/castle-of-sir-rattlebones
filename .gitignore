@@ -1,0 +1,29 @@
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+# Test output
+TestResults/
+*.trx
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+*.user
+*.suo
+*.rsuser
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Golden-file diffs left behind by failing walkthrough tests
+*.received.txt

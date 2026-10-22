@@ -1,0 +1,12 @@
+<Project Sdk="MSTest.Sdk">
+
+  <!-- MSTest.Sdk version is pinned in global.json; tests run on Microsoft.Testing.Platform. -->
+  <PropertyGroup>
+    <RootNamespace>CastleAdventure.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CastleAdventure\CastleAdventure.csproj" />
+  </ItemGroup>
+
+</Project>

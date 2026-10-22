@@ -1,0 +1,24 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="CLAUDE.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/docs/">
+    <File Path="docs/decisions.md" />
+    <File Path="docs/design.md" />
+    <File Path="docs/implementation-plan.md" />
+    <File Path="docs/plan.md" />
+    <File Path="docs/walkthrough.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CastleAdventure/CastleAdventure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CastleAdventure.Tests/CastleAdventure.Tests.csproj" />
+  </Folder>
+</Solution>
