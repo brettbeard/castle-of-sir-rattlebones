@@ -37,7 +37,31 @@ public static class Dungeon
                 Description =
                     "A wide-brimmed hat with a single bedraggled plume, perched on the skeleton's skull at a rakish angle. " +
                     "The crown bulges slightly, as if something were tucked beneath it.",
+                DescriptionWhen =
+                {
+                    new(s => s.CharacterStates[CharacterIds.Skeleton] == SkeletonStates.KeyGiven,
+                        "A wide-brimmed hat with a single bedraggled plume, perched on Sir Rattlebones' skull at a rakish angle. " +
+                        "The crown sits a little flatter now."),
+                },
                 TakeRefusal = "\"Hands off the hat, friend! A gentleman is nothing without his hat.\"",
+            },
+            new Item
+            {
+                Id = ItemIds.Straw,
+                Name = "straw",
+                Article = "some",
+                Aliases = { "rotting straw", "floor", "water", "puddle" },
+                Description = "Damp, black, and older than anyone would like. Water drips into it from somewhere overhead.",
+                TakeRefusal = "You'd rather not. It squelches.",
+            },
+            new Item
+            {
+                Id = ItemIds.DungeonSteps,
+                Name = "stone steps",
+                Article = "the",
+                Aliases = { "steps", "stairs", "stair" },
+                Description = "Worn stone steps lead up towards the kitchen and a faint square of light.",
+                TakeRefusal = "They're carved out of the castle itself.",
             },
         },
         Characters =

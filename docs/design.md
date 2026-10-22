@@ -99,6 +99,15 @@ States: `Unmet` → `Introduced` → `KeyGiven`.
 
 Takeable items: silver key, gold key, diary, pot, coin.
 
+Additional scenery (Phase 7) so every noun in the room prose can be examined: weeds, great doors,
+moon (Courtyard); archways (Great Hall); hearth (Kitchen); reading desk, narrow window (Library);
+flagstones (Chapel); straw, stone steps (Dungeon); empty shelves (Treasury).
+
+State-aware text (`DescriptionWhen`): the Great Hall and oak door read "open" once unlocked; the
+altar stops hinting once the key is found; the fountain stops glinting once the coin is found; the
+hat stops bulging once the key is given. OPEN on the trapdoor or great doors says they're already
+open; OPEN DIARY reads it.
+
 ## 7. Parser
 
 - Grammar: `VERB`, `VERB NOUN`, `VERB NOUN PREP NOUN`, `ASK CHARACTER ABOUT TOPIC`.
@@ -118,7 +127,7 @@ Takeable items: silver key, gold key, diary, pot, coin.
   | INVENTORY | inventory, inv, i |
   | OPEN / UNLOCK / USE | open / unlock / use |
   | SEARCH | lift, move, raise, search, look under, look behind, look in |
-  | TALK | talk, talk to, talk with, speak, speak to, speak with, greet |
+  | TALK | talk, talk to, talk with, speak, speak to, speak with, greet, hello, hi, say hello (to) |
   | ASK | ask (`ASK X ABOUT Y`, or `ASK ABOUT Y` with the character implied) |
   | HELP / HINT | help, ? / hint, hints |
   | RESTART / QUIT | restart / quit, q, exit |
@@ -131,6 +140,7 @@ Takeable items: silver key, gold key, diary, pot, coin.
 - Unknown word → "I don't know the word 'xyzzy'." (with flavor variants).
 - Known word not in scope → "You don't see any lantern here."
 - Out of scope: ALL, pronouns (IT), AGAIN/G, multiple commands per line.
+  Exception: in TALK and ASK, him/her/it/them mean the one character present ("ask him about the hat").
 
 ## 8. Commands
 
@@ -188,7 +198,8 @@ Hints are free and unlimited; the count is shown at the end.
 
 - The puzzle is fixed and identical every playthrough.
 - Randomized flavor: response pools (unknown words, blocked moves, some skeleton small talk),
-  bookshelf titles, ambient lines on ~1 in 6 counted moves (never on the winning move).
+  bookshelf titles, ambient lines on ~1 in 6 counted moves (never on the winning move, never the
+  same line twice in a row).
 - All randomness comes from `EngineOptions.Random`. With `Flavor = false` the first line of every
   pool is used and no ambient lines appear (engine tests); the golden walkthrough uses flavor on
   with a fixed seed.

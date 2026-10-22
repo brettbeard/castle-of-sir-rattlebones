@@ -1,4 +1,5 @@
 using CastleAdventure.Model;
+using CastleAdventure.Parsing;
 
 namespace CastleAdventure.Engine;
 
@@ -32,7 +33,7 @@ public static class DialogueActions
     public static Character? FindListener(GameContext context, string? noun, out string failure)
     {
         failure = string.Empty;
-        if (noun is null)
+        if (noun is null || Vocabulary.CharacterPronouns.Contains(noun))
         {
             var present = context.PresentCharacters.ToList();
             if (present.Count == 1)

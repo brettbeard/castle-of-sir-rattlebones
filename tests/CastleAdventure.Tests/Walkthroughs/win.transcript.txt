@@ -20,7 +20,7 @@ Exits: north, east.
 
 > n
 Great Hall
-The great hall stretches away into shadow. A long banquet table runs down its length, still set for a feast nobody finished. Tattered banners hang from the rafters. Archways lead west and east, the courtyard lies to the south, and a heavy oak door guards the way north.
+The great hall stretches away into shadow. A long banquet table runs down its length, still set for a feast nobody finished. Tattered banners hang from the rafters. Archways lead west and east, and the courtyard lies to the south. To the north, a heavy oak door stands firmly shut.
 Exits: north, south, east, west.
 
 > w

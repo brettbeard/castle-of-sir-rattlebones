@@ -15,6 +15,11 @@ public sealed class SkeletonTests
     [DataRow("speak to sir rattlebones")]
     [DataRow("talk")]
     [DataRow("greet skeleton")]
+    [DataRow("hello skeleton")]
+    [DataRow("hi")]
+    [DataRow("say hello to the skeleton")]
+    [DataRow("talk to him")]
+    [DataRow("talk to it")]
     public void Talk_Introduces(string input)
     {
         var game = InDungeon();
@@ -55,6 +60,8 @@ public sealed class SkeletonTests
     [DataRow("ask sir rattlebones about the golden key")]
     [DataRow("ask about key")]
     [DataRow("ask skeleton for the key")]
+    [DataRow("ask him about the key")]
+    [DataRow("ask them for the gold key")]
     public void AskAboutKey_AfterTalking_GivesGoldKey(string input)
     {
         var game = InDungeon();
@@ -131,6 +138,18 @@ public sealed class SkeletonTests
 
         Assert.Contains("clearly delighted to have company", look.Text);
         Assert.DoesNotContain("jaw creaks slowly open", look.Text);
+    }
+
+    [TestMethod]
+    public void PronounWithNobodyPresent_IsNobodyHere()
+    {
+        Assert.AreEqual("There's nobody here to talk to.", new TestGame().Do("talk to him").Text);
+    }
+
+    [TestMethod]
+    public void PronounsOutsideTalkAndAsk_AreStillUnknown()
+    {
+        Assert.AreEqual("I don't know the word 'it'.", new TestGame().In(RoomIds.Dungeon).Do("take it").Text);
     }
 
     [TestMethod]

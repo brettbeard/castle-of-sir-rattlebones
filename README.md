@@ -34,14 +34,21 @@ Type short commands at the `>` prompt:
 > ASK SKELETON ABOUT HAT
 ```
 
-Type **HELP** for a list of commands, or **HINT** if you're stuck.
+Type **HELP** for a list of commands, or **HINT** if you're stuck. **RESTART** starts over and
+**QUIT** leaves (both ask first). Your move and hint counts are shown when you win; try for fewer.
+
+Curious what it looks like? See [`docs/sample-transcript.md`](docs/sample-transcript.md)
+(contains the full solution).
 
 ## Development
 
 ```powershell
-dotnet build
-dotnet test
+dotnet build   # warnings are errors
+dotnet test    # 400+ MSTest tests, including a scripted walkthrough with a golden transcript
 ```
+
+The game project has no NuGet dependencies; game content lives in `src/CastleAdventure/Content/`,
+separate from the engine.
 
 Design and planning docs are in [`docs/`](docs/). Contributors (human or AI) should start with
 [`CLAUDE.md`](CLAUDE.md).

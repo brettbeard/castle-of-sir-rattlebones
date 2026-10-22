@@ -97,7 +97,9 @@ Program.cs (console, colors, wrapping, Y/N prompts)
 **Add an item**
 1. Add an ID to `ItemIds`.
 2. Define it in the owning room file: name, aliases (all lowercase), description, `IsTakeable`,
-   `TakeRefusal` (required for scenery), optional `ReadText`, `IsHidden` + `RevealedBy`, `Lock` (a `KeyLock`).
+   `TakeRefusal` (required for scenery), optional `ReadText`, `OpenedText`, `IsHidden` + `RevealedBy`,
+   `Lock` (a `KeyLock`), `RandomDetails`, and `DescriptionWhen` for text that changes with progress.
+   If the noun appears in a room's prose, add a `ProseTests` row.
 3. Add a test if it has behaviour beyond examine/take.
 
 **Validate content:** `WorldValidator.Validate(world)` lists structural problems (one-way exits,

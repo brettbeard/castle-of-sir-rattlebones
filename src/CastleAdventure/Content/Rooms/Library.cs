@@ -4,6 +4,11 @@ namespace CastleAdventure.Content.Rooms;
 
 public static class Library
 {
+    private const string DiaryText =
+        "Most of the entries complain about the cook. The last one reads: " +
+        "\"The steward grows greedy. I have hidden the silver key where the faithful kneel, " +
+        "and given the other to my old friend in the dungeon, who keeps everything under that ridiculous hat.\"";
+
     public static Room Create() => new()
     {
         Id = RoomIds.Library,
@@ -22,14 +27,12 @@ public static class Library
             {
                 Id = ItemIds.Diary,
                 Name = "dusty diary",
-                Aliases = { "diary", "journal" },
+                Aliases = { "diary", "journal", "entries", "pages" },
                 Description =
                     "A small leather diary, its pages brittle and brown. The handwriting inside is cramped but legible. " +
                     "You could read it.",
-                ReadText =
-                    "Most of the entries complain about the cook. The last one reads: " +
-                    "\"The steward grows greedy. I have hidden the silver key where the faithful kneel, " +
-                    "and given the other to my old friend in the dungeon, who keeps everything under that ridiculous hat.\"",
+                ReadText = DiaryText,
+                OpenedText = DiaryText,
                 IsTakeable = true,
             },
             new Item
@@ -49,6 +52,22 @@ public static class Library
                     "One spine still reads: \"Dusting for Beginners\". It has never been opened.",
                 },
                 TakeRefusal = "The shelves are bolted to the wall, and the books would crumble at a touch.",
+            },
+            new Item
+            {
+                Id = ItemIds.ReadingDesk,
+                Name = "reading desk",
+                Aliases = { "desk", "drawer", "drawers" },
+                Description = "A slanted oak desk, worn smooth by elbows. A clean square in the dust shows where a small book usually lies.",
+                TakeRefusal = "It's far too heavy, and it looks happy where it is.",
+            },
+            new Item
+            {
+                Id = ItemIds.LibraryWindow,
+                Name = "narrow window",
+                Aliases = { "window" },
+                Description = "Through the grimy glass you can just make out the courtyard far below, silver in the moonlight.",
+                TakeRefusal = "It's part of the wall, and the wall is very attached to it.",
             },
         },
     };

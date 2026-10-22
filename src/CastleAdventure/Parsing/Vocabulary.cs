@@ -63,6 +63,10 @@ public static class Vocabulary
         ["speak to"] = Verb.Talk,
         ["speak with"] = Verb.Talk,
         ["greet"] = Verb.Talk,
+        ["hello"] = Verb.Talk,
+        ["hi"] = Verb.Talk,
+        ["say hello"] = Verb.Talk,
+        ["say hello to"] = Verb.Talk,
 
         ["ask"] = Verb.Ask,
 
@@ -105,6 +109,15 @@ public static class Vocabulary
         ["at"] = "at",
         ["in"] = "in",
         ["into"] = "in",
+    };
+
+    /// <summary>
+    /// Pronouns accepted only as the character in TALK and ASK ("ask him about the hat"), meaning
+    /// the one character present. Pronouns are not supported anywhere else.
+    /// </summary>
+    public static IReadOnlySet<string> CharacterPronouns { get; } = new HashSet<string>
+    {
+        "him", "her", "it", "them",
     };
 
     public static int LongestVerbPhraseWords { get; } = VerbPhrases.Keys.Max(k => k.Split(' ').Length);

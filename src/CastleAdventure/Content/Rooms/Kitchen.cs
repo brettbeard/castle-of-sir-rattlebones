@@ -29,12 +29,21 @@ public static class Kitchen
             },
             new Item
             {
+                Id = ItemIds.Hearth,
+                Name = "hearth",
+                Aliases = { "fireplace", "ashes", "ash", "fire" },
+                Description = "A cavern of soot-blackened stone. The ashes are long cold, and something has been nesting in them.",
+                TakeRefusal = "You get a handful of cold ash and a strong urge to wash your hands.",
+            },
+            new Item
+            {
                 Id = ItemIds.Trapdoor,
                 Name = "trapdoor",
                 Aliases = { "trap door", "steps", "stairs", "stone steps" },
                 Description =
                     "A square of planks on rusty hinges, propped open. Stone steps lead down, and a draught " +
                     "drifts up carrying the smell of damp and, oddly, the sound of humming.",
+                OpenedText = "It's already open, propped on its rusty hinges. The steps lead down.",
                 TakeRefusal = "It's hinged to the floor. You'd only end up taking the floor too.",
             },
         },

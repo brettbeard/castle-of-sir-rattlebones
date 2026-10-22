@@ -19,34 +19,45 @@ public static class ItemIds
     // Courtyard
     public const string Fountain = "fountain";
     public const string CopperCoin = "copper_coin";
+    public const string Weeds = "weeds";
+    public const string GreatDoors = "great_doors";
+    public const string Moon = "moon";
 
     // Great Hall
     public const string BanquetTable = "banquet_table";
     public const string Banners = "banners";
     public const string OakDoor = "oak_door";
+    public const string Archways = "archways";
 
     // Kitchen
     public const string RustyPot = "rusty_pot";
     public const string Trapdoor = "trapdoor";
+    public const string Hearth = "hearth";
 
     // Library
     public const string Diary = "diary";
     public const string Bookshelves = "bookshelves";
+    public const string ReadingDesk = "reading_desk";
+    public const string LibraryWindow = "library_window";
 
     // Chapel
     public const string Altar = "altar";
     public const string AltarCloth = "altar_cloth";
     public const string StainedGlassWindow = "stained_glass_window";
+    public const string Flagstones = "flagstones";
     public const string SilverKey = "silver_key";
 
     // Dungeon
     public const string Chains = "chains";
     public const string FeatheredHat = "feathered_hat";
+    public const string Straw = "straw";
+    public const string DungeonSteps = "dungeon_steps";
     public const string GoldKey = "gold_key";
 
     // Treasury
     public const string TreasureChest = "treasure_chest";
     public const string SuitOfArmor = "suit_of_armor";
+    public const string EmptyShelves = "empty_shelves";
 }
 
 public static class LockIds

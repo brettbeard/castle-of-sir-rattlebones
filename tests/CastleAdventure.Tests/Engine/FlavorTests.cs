@@ -31,6 +31,20 @@ public sealed class FlavorTests
     }
 
     [TestMethod]
+    public void AmbientLines_NeverRepeatBackToBack()
+    {
+        var game = Seeded(3, ambientOneIn: 1);
+        string? previous = null;
+
+        for (var i = 0; i < 40; i++)
+        {
+            var line = game.Do("look").Blocks[^1].Text;
+            Assert.AreNotEqual(previous, line, $"turn {i}");
+            previous = line;
+        }
+    }
+
+    [TestMethod]
     public void FlavorOn_AmbientNotAddedToUncountedCommands()
     {
         var response = Seeded(1, ambientOneIn: 1).Do("i");

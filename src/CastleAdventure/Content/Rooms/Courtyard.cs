@@ -23,9 +23,42 @@ public static class Courtyard
             {
                 Id = ItemIds.Fountain,
                 Name = "fountain",
-                Aliases = { "dry fountain", "basin", "stone fish", "fish" },
+                Aliases = { "dry fountain", "basin", "stone fish", "fish", "leaves" },
                 Description = "The basin is cracked and choked with dead leaves. The stone fish spouts nothing but cobwebs.",
+                DescriptionWhen =
+                {
+                    new(s => s.RevealedItemIds.Contains(ItemIds.CopperCoin),
+                        "The basin is cracked and choked with dead leaves. Nothing else glints among them."),
+                },
                 TakeRefusal = "You'd need a cart, six strong friends, and a very good reason.",
+            },
+            new Item
+            {
+                Id = ItemIds.Weeds,
+                Name = "weeds",
+                Article = "some",
+                Aliases = { "weed", "grass", "nettles" },
+                Description = "Nettles, thistles, and something that might once have been a rose garden. They hiss and sway in the wind.",
+                TakeRefusal = "You pull up a handful of nettles, regret it immediately, and drop them.",
+            },
+            new Item
+            {
+                Id = ItemIds.GreatDoors,
+                Name = "great doors",
+                Article = "the",
+                Aliases = { "doors", "gates", "gate", "castle doors" },
+                Description = "Two enormous doors of weathered oak, hanging crooked on their hinges. Nobody has closed them in a very long time.",
+                OpenedText = "They're already hanging open. Some invitations are hard to refuse.",
+                TakeRefusal = "Each one weighs more than a horse.",
+            },
+            new Item
+            {
+                Id = ItemIds.Moon,
+                Name = "moon",
+                Article = "the",
+                Aliases = { "sky", "stars", "moonlight" },
+                Description = "A fat silver crescent hangs over the battlements, as if the castle had pinned its crest to the sky.",
+                TakeRefusal = "You reach for it. It stays where it is.",
             },
             new Item
             {

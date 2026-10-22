@@ -22,7 +22,7 @@ public static class FlavorText
         Ambient =
         {
             "Somewhere, a chain rattles.",
-            "Wind moans through the arrow slits.",
+            "Somewhere far above, the wind moans.",
             "A bat flits past overhead.",
             "A distant door bangs in the wind.",
             "The castle settles with a long, creaking sigh.",

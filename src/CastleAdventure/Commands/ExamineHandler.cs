@@ -29,8 +29,8 @@ public sealed class ExamineHandler : ICommandHandler
         }
 
         var description = item.RandomDetails.Count == 0
-            ? item.Description
-            : $"{item.Description} {context.Flavor.Pick(item.RandomDetails, string.Empty)}";
+            ? context.DescriptionOf(item)
+            : $"{context.DescriptionOf(item)} {context.Flavor.Pick(item.RandomDetails, string.Empty)}";
 
         return GameResponse.Say([description, .. RevealActions.RevealFrom(context, item, RevealVerbs.Examine)]);
     }

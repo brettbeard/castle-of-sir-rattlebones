@@ -18,6 +18,9 @@ public sealed class Item
 
     public required string Description { get; init; }
 
+    /// <summary>State-dependent descriptions; the first that applies replaces <see cref="Description"/>.</summary>
+    public List<ConditionalText> DescriptionWhen { get; } = [];
+
     /// <summary>One of these is picked at random and added after the description on EXAMINE.</summary>
     public List<string> RandomDetails { get; } = [];
 

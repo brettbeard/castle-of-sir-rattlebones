@@ -142,3 +142,15 @@ Format: **Context** → **Decision** → **Consequences**.
   Flavor pools list the canonical line first; `EngineOptions.Flavor = false` always uses it.
 - **Consequences:** Handlers stay simple; tests are deterministic without stubbing `Random`.
   Any new random draw shifts the seeded golden transcript, so regenerate it deliberately.
+
+## ADR-018 — Phase 7 polish: state-aware text, greetings, character pronouns (2026-10-22)
+
+- **Context:** Playtesting showed stale text after progress (altar still hinting, hat still bulging,
+  door "shut" when open), unexaminable prose nouns, and natural phrasings that failed
+  (`hello skeleton`, `ask him about the hat`).
+- **Decision:** Add `ConditionalText` and `DescriptionWhen` on items and rooms (first matching
+  condition replaces the description). Add scenery for every prose noun. Add HELLO/HI/SAY HELLO as
+  TALK. Accept him/her/it/them as the character in TALK and ASK only, meaning the one character present.
+  Ambient lines never repeat back to back.
+- **Consequences:** Pronouns stay out of scope elsewhere (`take it` is still an unknown word).
+  `ProseTests` guards prose nouns and state-aware text.

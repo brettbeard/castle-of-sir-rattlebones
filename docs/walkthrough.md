@@ -4,8 +4,9 @@ For maintainers and agents. Kept in sync with
 `tests/CastleAdventure.Tests/Walkthroughs/win.commands.txt` (Phase 5+), which is the
 executable version of this solution.
 
-> Status: the route below is verified by `WalkthroughTests` (Phase 5); the full expected output is
-> `tests/CastleAdventure.Tests/Walkthroughs/win.transcript.txt`. Wording is finalised in Phase 7.
+> Status: final (Phase 7). The route below is verified by `WalkthroughTests`; the full expected output
+> is `tests/CastleAdventure.Tests/Walkthroughs/win.transcript.txt`, and a console run is in
+> [`sample-transcript.md`](sample-transcript.md).
 
 ## Map
 
@@ -38,14 +39,19 @@ executable version of this solution.
 | 13 | `N` | → Treasury | |
 | 14 | `OPEN CHEST` | Treasury | **Win** (gold key auto-picked) |
 
-Minimum: 14 moves, 0 hints.
+Minimum: 14 moves, 0 hints. A curious first-time player who examines most things takes about
+50–60 moves (roughly 10–20 minutes).
 
 ## Optional discoveries
 
-- Library: `READ DIARY` — hints at the altar and the skeleton.
+- Library: `READ DIARY` (or `OPEN DIARY`) — hints at the altar and the skeleton.
+- Library: `EXAMINE DESK` — a clean square in the dust where the diary lies.
+- Chapel: `EXAMINE FLAGSTONES` — worn deepest in front of the altar (another nudge).
 - Courtyard: `EXAMINE FOUNTAIN` — reveals a copper coin (red herring).
-- Dungeon: ask Sir Rattlebones about HAT, CASTLE, TREASURE, CHEST, CHAINS, DIARY, COIN, NAME.
+- Dungeon: ask Sir Rattlebones about HAT, CASTLE, TREASURE, CHEST, CHAINS, DIARY, COIN, SILVER KEY, NAME.
+  `HELLO`, `TALK TO HIM`, and `ASK HIM ABOUT …` all work.
 - Library: `EXAMINE BOOKSHELVES` repeatedly for random book titles.
+- Treasury: `EXAMINE ARMOUR` — it creaks ominously, then does nothing at all.
 
 ## Things that must NOT work
 

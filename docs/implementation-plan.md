@@ -18,7 +18,7 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 | 4 | Engine core (**milestone**) | Done | Phase 4 commit |
 | 5 | Puzzles | Done | Phase 5 commit |
 | 6 | Meta and polish | Done | Phase 6 commit |
-| 7 | Content pass and release | Not started | |
+| 7 | Content pass and release | Done (owner: VS F5 + colours) | Phase 7 commit |
 
 ---
 
@@ -155,15 +155,15 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 **Goal:** a polished game and accurate docs.
 **Depends on:** Phase 6.
 
-- [ ] 7.1 Prose pass on every room, item, topic, and message (tone: atmospheric, lightly comic)
-- [ ] 7.1a Make every noun mentioned in room prose examinable (e.g. hearth, weeds, desk, straw, empty shelves) or remove it
-- [ ] 7.1b State-aware text where it reads oddly after progress (altar after the key is taken, hat bulge after the key is given)
-- [ ] 7.2 Manual playthrough: pacing (10–20 min target), wrapping at 80 and narrower widths, colors
-- [ ] 7.3 Fix issues found; regenerate golden transcript
-- [ ] 7.4 Update `docs/walkthrough.md`, `CLAUDE.md`, `README.md` to match the shipped game
-- [ ] 7.5 Final verification: `dotnet build` (0 warnings), `dotnet test` (all green)
-- [ ] 7.6 Produce sample transcript by piping `win.commands.txt` into the game
-- [ ] 7.7 Report test results + transcript to the owner; owner verifies Visual Studio F5
+- [x] 7.1 Prose pass on every room, item, topic, and message (Great Hall reworded; OPEN on already-open things; OPEN DIARY reads it)
+- [x] 7.1a Every noun in room prose is examinable: 11 new scenery items; guarded by `ProseTests`
+- [x] 7.1b State-aware text via `ConditionalText` / `DescriptionWhen`: Great Hall + door after unlock, altar after key found, fountain after coin found, hat after key given
+- [x] 7.2 Manual playthrough (piped, exploratory, 54 moves ≈ 10–20 min). Wrapping verified at 79 in console and 20–79 in `TextWrapperTests`. Colours need an interactive terminal (owner check)
+- [x] 7.3 Fixed: HELLO/HI as TALK, him/her/it/them in TALK/ASK, no back-to-back ambient repeats, underground-safe ambient line; golden transcript regenerated (Great Hall wording only)
+- [x] 7.4 Updated `docs/walkthrough.md`, `design.md`, `plan.md`, `decisions.md` (ADR-018), `CLAUDE.md`, `README.md`
+- [x] 7.5 Final verification: `dotnet build` (0 warnings), `dotnet test` (all green)
+- [x] 7.6 `docs/sample-transcript.md` from piping `win.commands.txt` into the game
+- [ ] 7.7 Report test results + transcript to the owner; **owner verifies Visual Studio F5 and colours**
 
 **Exit criteria:** acceptance criteria below all met.
 **Commit:** `Phase 7: content polish and docs`
@@ -172,12 +172,12 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 
 ## Acceptance criteria (from the original brief)
 
-- [ ] Builds and runs from Visual Studio and `dotnet run` with no warnings
-- [ ] All rooms navigable with full and abbreviated directions
-- [ ] LOOK, EXAMINE, TAKE, DROP, INVENTORY, OPEN, UNLOCK, TALK TO, ASK ABOUT, HELP, QUIT all work
-- [ ] Locked room requires the silver key; chest requires the gold key
-- [ ] Skeleton gives the gold key only after TALK and then ASK ABOUT KEY
-- [ ] Game completable start to win; victory message appears
-- [ ] Unknown commands and invalid actions give helpful, in-character messages and never crash
-- [ ] Input is case-insensitive and tolerates extra spaces and articles
-- [ ] `dotnet build` and `dotnet test` pass; parser, rule, and walkthrough tests exist
+- [ ] Builds and runs from Visual Studio and `dotnet run` with no warnings — `dotnet` verified; **Visual Studio F5 pending owner**
+- [x] All rooms navigable with full and abbreviated directions — `MovementTests`
+- [x] LOOK, EXAMINE, TAKE, DROP, INVENTORY, OPEN, UNLOCK, TALK TO, ASK ABOUT, HELP, QUIT all work — engine tests + `MetaCommandTests`
+- [x] Locked room requires the silver key; chest requires the gold key — `LockTests`
+- [x] Skeleton gives the gold key only after TALK and then ASK ABOUT KEY — `SkeletonTests`
+- [x] Game completable start to win; victory message appears — `WalkthroughTests` + `sample-transcript.md`
+- [x] Unknown commands and invalid actions give helpful, in-character messages and never crash — `EngineBasicsTests`, `wrong-order` walkthrough
+- [x] Input is case-insensitive and tolerates extra spaces and articles — `ParserTests`
+- [x] `dotnet build` and `dotnet test` pass; parser, rule, and walkthrough tests exist

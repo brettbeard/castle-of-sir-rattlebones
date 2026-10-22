@@ -13,6 +13,7 @@
     <File Path="docs/design.md" />
     <File Path="docs/implementation-plan.md" />
     <File Path="docs/plan.md" />
+    <File Path="docs/sample-transcript.md" />
     <File Path="docs/walkthrough.md" />
   </Folder>
   <Folder Name="/src/">

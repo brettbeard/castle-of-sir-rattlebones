@@ -41,7 +41,8 @@ castle-of-sir-rattlebones/
 │  ├─ plan.md                      this file
 │  ├─ implementation-plan.md       phased task checklist with status
 │  ├─ decisions.md                 ADR-style decision log
-│  └─ walkthrough.md               intended solution + map (spoilers)
+│  ├─ walkthrough.md               intended solution + map (spoilers)
+│  └─ sample-transcript.md         a console run of the winning route (spoilers)
 ├─ CastleAdventure.slnx
 ├─ Directory.Build.props
 ├─ global.json                     SDK pin, MSTest.Sdk version, test runner
@@ -61,7 +62,8 @@ castle-of-sir-rattlebones/
 │  │  ├─ FlavorText.cs             random response pools, book titles, ambient lines
 │  │  └─ GameText.cs               title art, intro, HELP card, victory text
 │  ├─ Model/                       Room, Item, Exit, KeyLock, RevealTrigger, Character, Topic, DialogueRule,
-│  │                               Direction, World (static), GameState (mutable), ItemLocation, WorldValidator
+│  │                               Direction, World (static), GameState (mutable), ItemLocation, WorldValidator,
+│  │                               ConditionalText, Hint, FlavorPools
 │  ├─ Parsing/                     Vocabulary, Parser, ParsedCommand, Verb
 │  ├─ Engine/                      GameEngine, GameContext, GameResponse (TextBlock, TextStyle),
 │  │                               NounResolver (NounResolution, NounScope), RoomDescriber, Prose,

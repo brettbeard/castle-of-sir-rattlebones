@@ -44,9 +44,18 @@ public static class Treasury
             {
                 Id = ItemIds.SuitOfArmor,
                 Name = "suit of armour",
-                Aliases = { "armour", "armor", "suit", "suit of armor" },
+                Aliases = { "armour", "armor", "suit", "suit of armor", "helmet" },
                 Description = "An empty suit of plate armour. As you look at it, it creaks ominously. Then it does nothing at all.",
                 TakeRefusal = "It's bolted to its stand. Probably for the best.",
+            },
+            new Item
+            {
+                Id = ItemIds.EmptyShelves,
+                Name = "empty shelves",
+                Article = "the",
+                Aliases = { "shelves", "shelf", "riches" },
+                Description = "Bare stone shelves with neat, dust-free rectangles where boxes once stood. Someone emptied these in a hurry, but missed the chest.",
+                TakeRefusal = "They're carved into the wall.",
             },
         },
     };

@@ -42,4 +42,11 @@ public sealed class GameContext(World world, GameState state, NounResolver nouns
     public string StateOf(Character character) => State.CharacterStates[character.Id];
 
     public void MoveItem(Item item, ItemLocation location) => State.ItemLocations[item.Id] = location;
+
+    public string DescriptionOf(Item item) => FirstApplicable(item.DescriptionWhen) ?? item.Description;
+
+    public string DescriptionOf(Room room) => FirstApplicable(room.DescriptionWhen) ?? room.Description;
+
+    private string? FirstApplicable(IEnumerable<ConditionalText> texts) =>
+        texts.FirstOrDefault(t => t.When(State))?.Text;
 }

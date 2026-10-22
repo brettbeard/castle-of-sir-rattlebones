@@ -10,6 +10,9 @@ public sealed class Room
     /// <summary>Full prose description. Mention scenery here; takeable items are listed separately.</summary>
     public required string Description { get; init; }
 
+    /// <summary>State-dependent descriptions; the first that applies replaces <see cref="Description"/>.</summary>
+    public List<ConditionalText> DescriptionWhen { get; } = [];
+
     public Dictionary<Direction, Exit> Exits { get; } = [];
 
     /// <summary>Items that start in this room. Where they are later is tracked in <see cref="GameState"/>.</summary>

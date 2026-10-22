@@ -15,7 +15,7 @@ public static class RoomDescriber
 
         if (full)
         {
-            blocks.Add(new TextBlock(room.Description));
+            blocks.Add(new TextBlock(context.DescriptionOf(room)));
         }
 
         foreach (var character in context.PresentCharacters)

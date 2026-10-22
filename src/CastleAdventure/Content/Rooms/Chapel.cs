@@ -25,6 +25,11 @@ public static class Chapel
                 Article = "an",
                 Aliases = { "stone altar", "cracked altar" },
                 Description = "A slab of cracked grey stone. Something beneath the cloth catches the moonlight.",
+                DescriptionWhen =
+                {
+                    new(s => s.RevealedItemIds.Contains(ItemIds.SilverKey),
+                        "A slab of cracked grey stone, its cloth pushed aside. Whatever it was hiding, you've found it."),
+                },
                 TakeRefusal = "Even with a team of oxen, no.",
             },
             new Item
@@ -40,9 +45,18 @@ public static class Chapel
             {
                 Id = ItemIds.StainedGlassWindow,
                 Name = "stained glass window",
-                Aliases = { "window", "stained glass", "glass" },
+                Aliases = { "window", "stained glass", "glass", "knight", "shapes" },
                 Description = "A knight in silver armour kneels before a golden chest. Subtle, whoever designed this.",
                 TakeRefusal = "It's set in solid stone, and it's rather beautiful where it is.",
+            },
+            new Item
+            {
+                Id = ItemIds.Flagstones,
+                Name = "flagstones",
+                Article = "the",
+                Aliases = { "floor", "flagstone", "stones" },
+                Description = "Worn smooth by centuries of kneeling. The hollows are deepest right in front of the altar.",
+                TakeRefusal = "They're mortared in tight. The castle would like to keep its floor.",
             },
             new Item
             {
