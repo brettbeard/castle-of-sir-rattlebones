@@ -57,6 +57,8 @@ All exits are bidirectional. No one-way passages, no hidden exits.
 - Unlocked stays unlocked. Repeat unlock → "It's already unlocked."
 - Chest is not takeable: "It's far too heavy to lift."
 - Opening the chest with the gold key prints the treasure description and victory message.
+  `UNLOCK CHEST` also opens it (and wins): unlocking any item that has opened-text opens it too.
+- After winning, further commands reply "The treasure is yours. The adventure is over."
 
 ## 5. Sir Rattlebones (skeleton)
 

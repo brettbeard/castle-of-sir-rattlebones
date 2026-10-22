@@ -1,0 +1,64 @@
+Courtyard
+You stand in an overgrown courtyard, knee-deep in weeds that hiss in the wind. A dry fountain squats in the middle, its stone fish gaping at the moon. The castle's great doors hang open to the north, and a small chapel huddles against the wall to the east.
+Exits: north, east.
+
+> e
+Chapel
+A small chapel, cold as a tomb. Moonlight pours through a stained glass window, laying coloured shapes across the flagstones. At the far end stands a cracked stone altar draped in a moth-eaten cloth. The courtyard is back to the west.
+Exits: west.
+
+> lift cloth
+You lift the edge of the cloth. Beneath it, tucked against the stone, lies a silver key!
+
+> take silver key
+Taken.
+
+> w
+Courtyard
+Exits: north, east.
+
+> n
+Great Hall
+The great hall stretches away into shadow. A long banquet table runs down its length, still set for a feast nobody finished. Tattered banners hang from the rafters. Archways lead west and east, the courtyard lies to the south, and a heavy oak door guards the way north.
+Exits: north, south, east, west.
+
+> w
+Kitchen
+Cold ashes fill a hearth big enough to roast an ox, and something small skitters out of sight as you enter. In the floor, a trapdoor stands open above a flight of stone steps leading down into darkness. The great hall is back to the east.
+You can see a rusty pot here.
+Exits: east, down.
+
+> d
+Dungeon
+Water drips somewhere in the dark. Rotting straw covers the floor, and rusted chains hang from the walls. Stone steps lead up to the kitchen.
+Slumped against the far wall in rusted shackles is a skeleton wearing a battered feathered hat. As you watch, its jaw creaks slowly open...
+Exits: up.
+
+> talk to skeleton
+The skeleton's head snaps toward you. You brace yourself...
+
+"Oh! A visitor! Forgive the rattling. I'm Sir Rattlebones, and I haven't had a proper chat in two hundred years. Ask me anything! Well, anything about the castle. Or hats. I'm very good on hats."
+
+> ask skeleton about key
+"The key? Oh, THAT key." Sir Rattlebones tips its hat with a flourish, and a gold key tumbles out from under the crown. It catches the key neatly in one bony hand and presses it into yours. "Been keeping it warm for whoever came along. Bones don't need gold."
+
+> u
+Kitchen
+You can see a rusty pot here.
+Exits: east, down.
+
+> e
+Great Hall
+Exits: north, south, east, west.
+
+> unlock door
+The silver key turns stiffly in the lock. With a long groan, the oak door swings open.
+
+> n
+Treasury
+A small vaulted chamber, its walls lined with empty shelves where riches once sat. In the middle of the floor rests an iron-bound treasure chest with a tiny golden lock. A suit of armour stands guard in the corner. The great hall is back to the south.
+Exits: south.
+
+> open chest
+The gold key turns with a satisfying click.
+You heave back the lid, and golden light spills across your face: coins, jewels, a jewelled crown, and, tucked neatly in one corner, a spare feathered hat. Sir Rattlebones, it seems, plans ahead.

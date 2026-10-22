@@ -101,6 +101,7 @@ public static class Vocabulary
         ["onto"] = "on",
         ["to"] = "to",
         ["about"] = "about",
+        ["for"] = "about",
         ["at"] = "at",
         ["in"] = "in",
         ["into"] = "in",

@@ -22,7 +22,7 @@ public sealed class TakeHandler : ICommandHandler
 
         if (target.Item is not { } item)
         {
-            return GameResponse.Say(target.FailureMessage);
+            return GameResponse.Say(HeldItemRefusal(context, noun) ?? target.FailureMessage);
         }
 
         if (context.LocationOf(item).Kind == LocationKind.Inventory)
@@ -38,4 +38,11 @@ public sealed class TakeHandler : ICommandHandler
         context.MoveItem(item, ItemLocation.Inventory);
         return GameResponse.Say("Taken.");
     }
+
+    /// <summary>"take key" near a character still holding a (hidden) key gets that character's refusal.</summary>
+    private static string? HeldItemRefusal(GameContext context, string noun) =>
+        context.PresentCharacters
+            .Where(c => c.HeldItems.Any(i => i.AllNames.Contains(noun) && context.LocationOf(i) == ItemLocation.HeldBy(c.Id)))
+            .Select(c => c.HeldItemTakeRefusal)
+            .FirstOrDefault(r => r is not null);
 }

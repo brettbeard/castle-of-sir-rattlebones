@@ -15,6 +15,12 @@ public sealed class CommandDispatcher
         [Verb.Take] = new TakeHandler(),
         [Verb.Drop] = new DropHandler(),
         [Verb.Inventory] = new InventoryHandler(),
+        [Verb.Open] = new OpenHandler(),
+        [Verb.Unlock] = new UnlockHandler(),
+        [Verb.Use] = new UseHandler(),
+        [Verb.Search] = new SearchHandler(),
+        [Verb.Talk] = new TalkHandler(),
+        [Verb.Ask] = new AskHandler(),
         [Verb.Quit] = new QuitHandler(),
     };
 

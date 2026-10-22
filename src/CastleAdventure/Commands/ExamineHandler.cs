@@ -1,9 +1,13 @@
 using CastleAdventure.Engine;
+using CastleAdventure.Model;
 using CastleAdventure.Parsing;
 
 namespace CastleAdventure.Commands;
 
-/// <summary>EXAMINE / X / LOOK AT: describes an item, or a character according to its current state.</summary>
+/// <summary>
+/// EXAMINE / X / LOOK AT: describes an item (and reveals anything it hides from an examining eye),
+/// or a character according to its current state.
+/// </summary>
 public sealed class ExamineHandler : ICommandHandler
 {
     public GameResponse Handle(ParsedCommand command, GameContext context)
@@ -19,8 +23,11 @@ public sealed class ExamineHandler : ICommandHandler
             return GameResponse.Say(character.DescriptionByState[context.StateOf(character)]);
         }
 
-        return target.Item is { } item
-            ? GameResponse.Say(item.Description)
-            : GameResponse.Say(target.FailureMessage);
+        if (target.Item is not { } item)
+        {
+            return GameResponse.Say(target.FailureMessage);
+        }
+
+        return GameResponse.Say([item.Description, .. RevealActions.RevealFrom(context, item, RevealVerbs.Examine)]);
     }
 }

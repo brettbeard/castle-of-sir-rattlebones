@@ -16,7 +16,7 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 | 2 | Model and world data | Done | Phase 2 commit |
 | 3 | Parser | Done | Phase 3 commit |
 | 4 | Engine core (**milestone**) | Done | Phase 4 commit |
-| 5 | Puzzles | Not started | |
+| 5 | Puzzles | Done | Phase 5 commit |
 | 6 | Meta and polish | Not started | |
 | 7 | Content pass and release | Not started | |
 
@@ -112,16 +112,16 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 **Goal:** the game can be won.
 **Depends on:** Phase 4.
 
-- [ ] 5.1 Reveal mechanic: `RevealedBy` on examine/search (cloth → silver key, fountain → coin); altar hint text
-- [ ] 5.2 `OpenHandler`, `UnlockHandler`, `UseHandler`: shared lock logic with auto-key selection, wrong-key messages, already-unlocked, open-implies-unlock
-- [ ] 5.3 `TalkHandler`, `AskHandler`: state transitions, `RequiredState`, `GivesItemId`, unknown-topic reply; KEY and GOLD KEY both map to the key topic
-- [ ] 5.4 Conditional take refusal (hat/gold key before KeyGiven; skeleton always)
-- [ ] 5.5 Win trigger: opening the chest sets `Won`, returns treasure + victory text
-- [ ] 5.6 `LockTests`: door/chest with no key, wrong key, right key, both keys held, already unlocked, open-with-key
-- [ ] 5.7 `SkeletonTests`: ask before talk, talk then ask, take hat refused, topics, unknown topic, KeyGiven idempotent
-- [ ] 5.8 `Walkthroughs/win.commands.txt` + `WalkthroughTests` asserting `Won`
-- [ ] 5.9 `wrong-order.commands.txt`: try the chest and door early; asserts not won and no crash
-- [ ] 5.10 Golden transcript `win.transcript.txt` at fixed seed, with `UPDATE_GOLDEN=1` regeneration
+- [x] 5.1 Reveal mechanic (`RevealActions`, `SearchHandler`, reveal on EXAMINE): cloth → silver key, fountain → coin; altar only hints
+- [x] 5.2 `OpenHandler`, `UnlockHandler`, `UseHandler` over shared `LockActions`: auto-key selection, wrong-key messages, already-unlocked, open-implies-unlock, unlocking an item with `OpenedText` also opens it
+- [x] 5.3 `TalkHandler`, `AskHandler` over `DialogueActions`: state-selected rules, `NewState`, `GivesItemId`, unknown-topic reply, implied character when only one is present; `ASK X FOR Y` = `ABOUT`
+- [x] 5.4 Conditional take refusal: items still held by a present character get `HeldItemTakeRefusal`; hat and skeleton always refuse
+- [x] 5.5 Win trigger: opening the chest sets `HasWon` and `Won`, returns unlock + treasure text; later commands reply "adventure is over". Victory banner/summary is printed by `Program.cs` (Phase 6)
+- [x] 5.6 `LockTests`: door/chest with no key, wrong key, right key, both keys held, already unlocked, open-with-key, non-key items, USE forms
+- [x] 5.7 `SkeletonTests` + `RevealTests`: ask before talk, talk then ask, take hat/key refused, topics, unknown topic, KeyGiven idempotent, presence text changes
+- [x] 5.8 `Walkthroughs/win.commands.txt` + `WalkthroughTests` asserting `HasWon`
+- [x] 5.9 `wrong-order.commands.txt`: early door/chest/skeleton attempts; asserts not won, no keys, door still locked
+- [x] 5.10 Golden transcript `win.transcript.txt` with `UPDATE_GOLDEN=1` regeneration and `win.received.txt` on mismatch (verified by tampering)
 
 **Exit criteria:** full game winnable via test; all tests green.
 **Commit:** `Phase 5: puzzles, skeleton dialogue, win condition`

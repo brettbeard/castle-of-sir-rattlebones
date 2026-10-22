@@ -4,8 +4,8 @@ For maintainers and agents. Kept in sync with
 `tests/CastleAdventure.Tests/Walkthroughs/win.commands.txt` (Phase 5+), which is the
 executable version of this solution.
 
-> Status: outline written in Phase 1 from `design.md`. Exact commands and wording are
-> finalised in Phase 7.
+> Status: the route below is verified by `WalkthroughTests` (Phase 5); the full expected output is
+> `tests/CastleAdventure.Tests/Walkthroughs/win.transcript.txt`. Wording is finalised in Phase 7.
 
 ## Map
 

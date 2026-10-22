@@ -201,6 +201,7 @@ public sealed class ParserTests
     [DataRow("ask the skeleton about the gold key", Verb.Ask, "skeleton", "about", "gold key")]
     [DataRow("ask sir rattlebones about hat", Verb.Ask, "sir rattlebones", "about", "hat")]
     [DataRow("ASK SKELETON ABOUT KEY", Verb.Ask, "skeleton", "about", "key")]
+    [DataRow("ask skeleton for the key", Verb.Ask, "skeleton", "about", "key")]
     public void Prepositions_SplitDirectAndIndirectObjects(
         string input, Verb verb, string direct, string preposition, string indirect)
     {

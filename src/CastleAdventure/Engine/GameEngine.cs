@@ -29,5 +29,7 @@ public sealed class GameEngine
         return GameResponse.Show(RoomDescriber.Describe(_context, full: true)) with { CountedMove = false };
     }
 
-    public GameResponse Execute(string? input) => _dispatcher.Dispatch(Parser.Parse(input), _context);
+    public GameResponse Execute(string? input) => State.HasWon
+        ? GameResponse.Say("The treasure is yours. The adventure is over.") with { CountedMove = false, Won = true }
+        : _dispatcher.Dispatch(Parser.Parse(input), _context);
 }

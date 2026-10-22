@@ -1,0 +1,16 @@
+# Shortest winning route (see docs/walkthrough.md).
+# One command per line; lines starting with # and blank lines are ignored.
+e
+lift cloth
+take silver key
+w
+n
+w
+d
+talk to skeleton
+ask skeleton about key
+u
+e
+unlock door
+n
+open chest

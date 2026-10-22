@@ -121,3 +121,13 @@ Format: **Context** → **Decision** → **Consequences**.
   The lock type is `KeyLock` (`Lock` clashes with `System.Threading.Lock` under implicit usings).
 - **Consequences:** RESTART = new `GameState`. A structural `WorldValidator` can check content
   without running the game.
+
+## ADR-016 — Lock messages and win signalling (2026-10-22)
+
+- **Context:** Several phrasings reach the same locks; the design left a few edge cases open.
+- **Decision:** With no key named, UNLOCK says "You have nothing that fits this lock." and OPEN says
+  "It's locked." even if a wrong key is carried; wrong-key messages appear only when that key is named.
+  Unlocking an item that has `OpenedText` also opens it, so UNLOCK CHEST wins. The engine signals
+  `Won` and returns the chest text; the victory banner and move summary are console text (`Program.cs`).
+- **Consequences:** The engine stays free of victory-screen content; the golden transcript ends at the
+  chest text.

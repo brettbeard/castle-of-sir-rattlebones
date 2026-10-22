@@ -1,0 +1,25 @@
+# Everything a player might try too early. None of it may win, crash, or hand out a key.
+n
+n
+unlock door
+open door
+take key
+w
+d
+take hat
+take key
+ask skeleton about key
+take skeleton
+u
+e
+e
+read diary
+w
+s
+e
+take key
+use key
+open chest
+unlock chest
+xyzzy
+dance

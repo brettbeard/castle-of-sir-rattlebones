@@ -65,6 +65,7 @@ castle-of-sir-rattlebones/
 │  ├─ Parsing/                     Vocabulary, Parser, ParsedCommand, Verb
 │  ├─ Engine/                      GameEngine, GameContext, GameResponse (TextBlock, TextStyle),
 │  │                               NounResolver (NounResolution, NounScope), RoomDescriber, Prose,
+│  │                               RevealActions, LockActions, DialogueActions,
 │  │                               Flavor (random picker, Phase 6)
 │  ├─ Commands/                    CommandDispatcher, ICommandHandler, <Verb>Handler.cs files
 │  └─ Output/TextWrapper.cs        pure word-wrap function
