@@ -14,7 +14,7 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 |---|---|---|---|
 | 1 | Scaffold | Done | Phase 1 commit |
 | 2 | Model and world data | Done | Phase 2 commit |
-| 3 | Parser | Not started | |
+| 3 | Parser | Done | Phase 3 commit |
 | 4 | Engine core (**milestone**) | Not started | |
 | 5 | Puzzles | Not started | |
 | 6 | Meta and polish | Not started | |
@@ -76,11 +76,11 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 **Goal:** text → `ParsedCommand`, fully tested, with no knowledge of the world.
 **Depends on:** Phase 1 (independent of Phase 2).
 
-- [ ] 3.1 `Parsing/Verb.cs` enum (Move, Look, Examine, Read, Take, Drop, Inventory, Open, Unlock, Use, Search, Talk, Ask, Help, Hint, Restart, Quit, Unknown)
-- [ ] 3.2 `Parsing/Vocabulary.cs`: verb synonyms, multi-word verbs, directions, prepositions, stopwords
-- [ ] 3.3 `Parsing/ParsedCommand.cs` record (Verb, Direction?, DirectObject, Preposition, IndirectObject, UnknownWord)
-- [ ] 3.4 `Parsing/Parser.cs`: lowercase, collapse whitespace, strip articles, match multi-word verbs, split on preposition, handle `ASK X ABOUT Y`, bare/`go` directions
-- [ ] 3.5 `Parsing/ParserTests.cs`: every synonym and abbreviation; articles; extra spaces; mixed case; `unlock door with key`; `use key on chest`; `ask skeleton about gold key`; `pick up diary`; `look at altar`; bare `n` and `go north`; empty input; unknown verb; known verb + unknown noun handled downstream
+- [x] 3.1 `Parsing/Verb.cs` enum (None, Unknown, Move, Look, Examine, Read, Take, Drop, Inventory, Open, Unlock, Use, Search, Talk, Ask, Help, Hint, Restart, Quit)
+- [x] 3.2 `Parsing/Vocabulary.cs`: verb synonyms, multi-word verbs, directions, prepositions, stopwords
+- [x] 3.3 `Parsing/ParsedCommand.cs` record (Verb, Direction?, DirectObject, Preposition, IndirectObject, UnknownWord)
+- [x] 3.4 `Parsing/Parser.cs`: lowercase, collapse whitespace, trim punctuation, strip articles and possessive 's, longest-match verb phrases, `look <noun>` → examine, split on first preposition, `ASK X ABOUT Y` and `ASK ABOUT Y`, bare/`go` directions
+- [x] 3.5 `Parsing/ParserTests.cs`: every synonym and abbreviation; articles; extra spaces; mixed case; punctuation; `unlock door with key`; `use key on chest`; `ask skeleton about gold key`; `pick up diary`; `look at altar`; bare `n` and `go north`; empty input; unknown verb; known verb + unknown noun passed through; vocabulary hygiene
 
 **Exit criteria:** parser tests green.
 **Commit:** `Phase 3: command parser and vocabulary`

@@ -100,12 +100,28 @@ Takeable items: silver key, gold key, diary, pot, coin.
 ## 7. Parser
 
 - Grammar: `VERB`, `VERB NOUN`, `VERB NOUN PREP NOUN`, `ASK CHARACTER ABOUT TOPIC`.
-- Prepositions: with, on, to, about, at, in.
-- Stripped words: the, a, an, some, my. Extra whitespace collapsed. Case-insensitive.
-- Multi-word verbs: `pick up`, `look at`, `talk to`, `speak to`, `go <dir>`.
-- Synonyms: TAKE = take/get/pick up; EXAMINE = examine/x/look at; LOOK = look/l;
-  TALK = talk to/speak to; SEARCH = lift/move; INVENTORY = inventory/i; READ.
-- Directions: north/n, south/s, east/e, west/w, up/u, down/d; bare or with `go`.
+- Prepositions: with, on, to, about, at, in (plus `using`→with, `onto`→on, `into`→in).
+- Stripped words: the, a, an, some, my. Extra whitespace and trailing punctuation ignored;
+  possessive `'s` removed. Case-insensitive.
+- Verb synonyms (full list in `src/CastleAdventure/Parsing/Vocabulary.cs`):
+
+  | Verb | Words |
+  |---|---|
+  | MOVE | go, walk, climb (+ direction), or a bare direction |
+  | LOOK | look, l, look around |
+  | EXAMINE | examine, x, inspect, look at, look `<noun>` |
+  | READ | read |
+  | TAKE | take, get, grab, pick up |
+  | DROP | drop, discard, put down |
+  | INVENTORY | inventory, inv, i |
+  | OPEN / UNLOCK / USE | open / unlock / use |
+  | SEARCH | lift, move, raise, search, look under, look behind, look in |
+  | TALK | talk, talk to, talk with, speak, speak to, speak with, greet |
+  | ASK | ask (`ASK X ABOUT Y`, or `ASK ABOUT Y` with the character implied) |
+  | HELP / HINT | help, ? / hint, hints |
+  | RESTART / QUIT | restart / quit, q, exit |
+
+- Directions: north/n, south/s, east/e, west/w, up/u, down/d; bare or after go/walk/climb.
 - Nouns resolve against aliases of items **in scope** (current room, inventory, characters present).
   Hidden (unrevealed) items are never in scope.
 - Ambiguity: if verb context (lock auto-pick) can't resolve it → "Which key do you mean, the silver key or the gold key?"
