@@ -5,13 +5,22 @@ namespace CastleAdventure.Engine;
 /// <summary>
 /// The world, the current play state, and common queries over them. Passed to every command handler.
 /// </summary>
-public sealed class GameContext(World world, GameState state, NounResolver nouns)
+public sealed class GameContext(World world, GameState state, NounResolver nouns, Flavor flavor)
 {
     public World World { get; } = world;
 
     public GameState State { get; } = state;
 
     public NounResolver Nouns { get; } = nouns;
+
+    public Flavor Flavor { get; } = flavor;
+
+    /// <summary>"I don't know the word 'xyzzy'." or a flavor variant.</summary>
+    public string UnknownWordMessage(string word) =>
+        string.Format(
+            System.Globalization.CultureInfo.InvariantCulture,
+            Flavor.Pick(World.Flavor.UnknownWord, "I don't know the word '{0}'."),
+            word);
 
     public Room CurrentRoom => World.Rooms[State.CurrentRoomId];
 

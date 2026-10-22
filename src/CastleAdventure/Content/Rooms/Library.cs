@@ -39,6 +39,15 @@ public static class Library
                 Article = "some",
                 Aliases = { "shelves", "shelf", "bookshelf", "books", "book", "spines" },
                 Description = "Hundreds of books, most of them too rotten to open.",
+                RandomDetails =
+                {
+                    "One spine still reads: \"Bones and How to Keep Them\".",
+                    "One spine still reads: \"101 Hat Tricks\".",
+                    "One spine still reads: \"A Steward's Guide to Hiding Things (Badly)\".",
+                    "One spine still reads: \"Moonhollow: A History, Volume XII\".",
+                    "One spine still reads: \"Chains: A Love Story\".",
+                    "One spine still reads: \"Dusting for Beginners\". It has never been opened.",
+                },
                 TakeRefusal = "The shelves are bolted to the wall, and the books would crumble at a touch.",
             },
         },

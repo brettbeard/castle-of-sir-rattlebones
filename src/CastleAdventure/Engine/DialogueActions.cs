@@ -25,7 +25,7 @@ public static class DialogueActions
             context.State.RevealedItemIds.Add(itemId);
         }
 
-        return GameResponse.Say(rule.Reply);
+        return GameResponse.Say(context.Flavor.Pick([rule.Reply, .. rule.Alternatives], rule.Reply));
     }
 
     /// <summary>The character the player means: the named one, or the only one present when none is named.</summary>

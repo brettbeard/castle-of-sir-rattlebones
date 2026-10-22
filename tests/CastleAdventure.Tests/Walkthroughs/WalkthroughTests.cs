@@ -13,12 +13,16 @@ namespace CastleAdventure.Tests.Walkthroughs;
 [TestClass]
 public sealed class WalkthroughTests
 {
+    private const int Seed = 1;
+
     [TestMethod]
     public void Win_ReachesWinState()
     {
         var (engine, _) = Play("win.commands.txt");
 
         Assert.IsTrue(engine.State.HasWon);
+        Assert.AreEqual(14, engine.State.Moves);
+        Assert.AreEqual(0, engine.State.HintsUsed);
         Assert.IsTrue(engine.State.IsInInventory(ItemIds.SilverKey));
         Assert.IsTrue(engine.State.IsInInventory(ItemIds.GoldKey));
         Assert.AreEqual(RoomIds.Treasury, engine.State.CurrentRoomId);
@@ -64,7 +68,8 @@ public sealed class WalkthroughTests
             .Select(l => l.Trim())
             .Where(l => l.Length > 0 && !l.StartsWith('#'));
 
-        var engine = new GameEngine(CastleWorld.Build());
+        // Flavor on with a fixed seed: realistic output (ambient lines included) that is still repeatable.
+        var engine = new GameEngine(CastleWorld.Build(), new EngineOptions { Random = new Random(Seed) });
         var transcript = new StringBuilder().Append(engine.Start().Text).Append('\n');
 
         foreach (var command in commands)

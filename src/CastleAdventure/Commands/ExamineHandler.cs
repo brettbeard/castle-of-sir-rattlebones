@@ -28,6 +28,10 @@ public sealed class ExamineHandler : ICommandHandler
             return GameResponse.Say(target.FailureMessage);
         }
 
-        return GameResponse.Say([item.Description, .. RevealActions.RevealFrom(context, item, RevealVerbs.Examine)]);
+        var description = item.RandomDetails.Count == 0
+            ? item.Description
+            : $"{item.Description} {context.Flavor.Pick(item.RandomDetails, string.Empty)}";
+
+        return GameResponse.Say([description, .. RevealActions.RevealFrom(context, item, RevealVerbs.Examine)]);
     }
 }

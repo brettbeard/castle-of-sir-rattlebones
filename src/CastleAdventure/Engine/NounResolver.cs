@@ -47,14 +47,12 @@ public sealed class NounResolver
         };
     }
 
-    /// <summary>True if every word in the phrase appears somewhere in the game's vocabulary.</summary>
-    public bool IsKnown(string phrase) => FirstUnknownWord(phrase) is null;
-
     private string NotFoundMessage(string noun) =>
         FirstUnknownWord(noun) is { } unknown
             ? $"I don't know the word '{unknown}'."
             : $"You don't see any {noun} here.";
 
-    private string? FirstUnknownWord(string phrase) =>
+    /// <summary>The first word in the phrase that appears nowhere in the game's vocabulary, or null.</summary>
+    public string? FirstUnknownWord(string phrase) =>
         phrase.Split(' ').FirstOrDefault(w => !_knownWords.Contains(w));
 }

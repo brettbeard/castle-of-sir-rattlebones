@@ -9,6 +9,7 @@ Exits: west.
 
 > lift cloth
 You lift the edge of the cloth. Beneath it, tucked against the stone, lies a silver key!
+A bat flits past overhead.
 
 > take silver key
 Taken.

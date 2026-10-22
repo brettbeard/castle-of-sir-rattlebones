@@ -1,40 +1,76 @@
 using CastleAdventure.Content;
 using CastleAdventure.Engine;
+using CastleAdventure.Output;
 
-// Console front end. Phase 4: plain read–execute–print loop.
-// Title screen, colours, wrapping, and Y/N confirmations arrive in Phase 6.
+// Console front end: title, intro, the read–execute–print loop, confirmations, and the victory screen.
+// All game rules live in GameEngine; all console details live in ConsoleUi.
 
-var engine = new GameEngine(CastleWorld.Build());
+var ui = new ConsoleUi();
 
-Console.WriteLine("THE CASTLE OF SIR RATTLEBONES");
-Console.WriteLine();
-Print(engine.Start());
+ConsoleUi.PrintRaw(GameText.Title);
+ConsoleUi.BlankLine();
+ui.Print(GameText.Byline);
+ConsoleUi.BlankLine();
+ui.Print(GameText.PressAnyKey);
+ConsoleUi.WaitForKey();
+ConsoleUi.BlankLine();
+ui.Print(GameText.Intro);
 
-while (true)
+while (PlayOneGame(ui))
 {
-    Console.WriteLine();
-    Console.Write("> ");
-    var input = Console.ReadLine();
-    if (input is null)
-    {
-        break; // End of input (e.g. piped script).
-    }
-
-    var response = engine.Execute(input);
-    Console.WriteLine();
-    Print(response);
-
-    if (response.RequestQuit)
-    {
-        Console.WriteLine("Farewell, adventurer.");
-        break;
-    }
+    ConsoleUi.BlankLine();
 }
 
-static void Print(GameResponse response)
+ConsoleUi.BlankLine();
+ui.Print(GameText.Farewell);
+
+// Plays until the player wins, restarts, or quits. Returns true to start a new game.
+static bool PlayOneGame(ConsoleUi ui)
 {
-    foreach (var block in response.Blocks)
+    var engine = new GameEngine(CastleWorld.Build());
+    ConsoleUi.BlankLine();
+    ui.Print(engine.Start());
+
+    while (true)
     {
-        Console.WriteLine(block.Text);
+        var input = ConsoleUi.Prompt();
+        if (input is null)
+        {
+            return false; // End of input (e.g. a piped script).
+        }
+
+        var response = engine.Execute(input);
+
+        if (response.RequestQuit)
+        {
+            if (ui.Confirm(GameText.ConfirmQuit, whenNoInput: true))
+            {
+                return false;
+            }
+
+            continue;
+        }
+
+        if (response.RequestRestart)
+        {
+            if (ui.Confirm(GameText.ConfirmRestart, whenNoInput: false))
+            {
+                return true;
+            }
+
+            continue;
+        }
+
+        ConsoleUi.BlankLine();
+        ui.Print(response);
+
+        if (response.Won)
+        {
+            ConsoleUi.BlankLine();
+            ui.Print(GameText.Victory, TextStyle.Victory);
+            ConsoleUi.BlankLine();
+            ui.Print(GameText.Summary(engine.State.Moves, engine.State.HintsUsed));
+            return ui.Confirm(GameText.PlayAgain, whenNoInput: false);
+        }
     }
 }

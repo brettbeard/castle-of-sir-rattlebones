@@ -16,5 +16,10 @@ public static class CastleWorld
             Chapel.Create(),
             Dungeon.Create(),
             Treasury.Create(),
-        ]);
+        ])
+    {
+        Hints = Content.Hints.All,
+        Flavor = FlavorText.Create(),
+        HelpText = GameText.Help,
+    };
 }

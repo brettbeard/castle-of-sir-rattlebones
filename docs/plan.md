@@ -66,9 +66,9 @@ castle-of-sir-rattlebones/
 │  ├─ Engine/                      GameEngine, GameContext, GameResponse (TextBlock, TextStyle),
 │  │                               NounResolver (NounResolution, NounScope), RoomDescriber, Prose,
 │  │                               RevealActions, LockActions, DialogueActions,
-│  │                               Flavor (random picker, Phase 6)
+│  │                               EngineOptions, Flavor (random picker)
 │  ├─ Commands/                    CommandDispatcher, ICommandHandler, <Verb>Handler.cs files
-│  └─ Output/TextWrapper.cs        pure word-wrap function
+│  └─ Output/                      TextWrapper (pure word-wrap), ConsoleUi (colour, prompts, Y/N)
 └─ tests/CastleAdventure.Tests/
    ├─ CastleAdventure.Tests.csproj
    ├─ TestWorldBuilder.cs          helpers for small custom worlds

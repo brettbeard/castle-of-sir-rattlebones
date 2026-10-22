@@ -17,7 +17,7 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 | 3 | Parser | Done | Phase 3 commit |
 | 4 | Engine core (**milestone**) | Done | Phase 4 commit |
 | 5 | Puzzles | Done | Phase 5 commit |
-| 6 | Meta and polish | Not started | |
+| 6 | Meta and polish | Done | Phase 6 commit |
 | 7 | Content pass and release | Not started | |
 
 ---
@@ -133,16 +133,17 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 **Goal:** complete retro experience.
 **Depends on:** Phase 5.
 
-- [ ] 6.1 `HelpHandler` (static card from `GameText`)
-- [ ] 6.2 `HintHandler` + `Content/Hints.cs` tiers; hint counter
-- [ ] 6.3 Move counter rules (counted vs not, per `design.md` §9)
-- [ ] 6.4 RESTART and QUIT with Y/N confirmation (engine returns request flag; `Program.cs` confirms); RESTART rebuilds via `CastleWorld.Build()`
-- [ ] 6.5 Victory summary "You won in N moves using H hints." + "Play again? (Y/N)"
-- [ ] 6.6 `Engine/Flavor.cs` + `Content/FlavorText.cs`: response pools, bookshelf titles, ambient lines (~1 in 6), toggle for tests
-- [ ] 6.7 `Output/TextWrapper.cs` + `TextWrapperTests` (word boundaries, long words, paragraphs, width fallback)
-- [ ] 6.8 `Program.cs`: title screen, intro, colors (yellow room names, green victory), no color when redirected, wrapping
-- [ ] 6.9 Tests: `HintTests` (each tier), `MoveCounterTests`, `RestartTests`
-- [ ] 6.10 Regenerate golden transcript; review the diff
+- [x] 6.1 `HelpHandler` (card from `GameText.Help`, supplied to the engine as `World.HelpText`)
+- [x] 6.2 `HintHandler` + `Content/Hints.cs` tiers (`World.Hints`); hint counter; extra tier for a dropped gold key
+- [x] 6.3 Move counter in `GameEngine` (counted vs not, per `design.md` §9); unknown noun words caught before dispatch and not counted
+- [x] 6.4 `RestartHandler`; RESTART and QUIT confirmed Y/N in `Program.cs`; RESTART builds a fresh engine from `CastleWorld.Build()`
+- [x] 6.5 Victory banner (green), "You won in N moves using H hints." with plurals, "Play again? (Y/N)"
+- [x] 6.6 `EngineOptions` (Random, Flavor on/off, ambient rate), `Engine/Flavor.cs`, `Content/FlavorText.cs` (unknown word, no exit, ambient), `Item.RandomDetails` (bookshelf titles), `DialogueRule.Alternatives` (talk-again lines)
+- [x] 6.7 `Output/TextWrapper.cs` + `TextWrapperTests` (word boundaries, long words, blank lines, indents, CRLF)
+- [x] 6.8 `Program.cs` + `Output/ConsoleUi.cs`: title art, intro, colours (yellow room names, green victory), no colour/key-wait when redirected, wrapping at min(width, 80) - 1
+- [x] 6.9 Tests: `HintTests` (each tier), `MoveCounterTests`, `MetaCommandTests` (help, restart, every verb handled), `FlavorTests`
+- [x] 6.10 Regenerated golden transcript (seeded flavor); diff was one intended ambient line
+- [x] 6.11 *(added)* Manual console check: piped full win (victory + summary + play-again) and restart/quit confirmations
 
 **Exit criteria:** all commands in `design.md` §8 work; all tests green.
 **Commit:** `Phase 6: help, hints, counters, flavor, presentation`

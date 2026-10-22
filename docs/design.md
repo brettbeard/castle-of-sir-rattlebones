@@ -167,7 +167,8 @@ HINT returns the first matching tier:
 | Has silver key, Treasury locked | "That crescent-engraved door in the Great Hall looks promising." |
 | No gold key, skeleton Unmet | "Have you looked beneath the kitchen?" |
 | No gold key, skeleton Introduced | "Sir Rattlebones loves a chat. Have you asked about a key?" |
-| Has gold key | "You have everything you need. To the chest!" |
+| No gold key, skeleton KeyGiven (key dropped) | "Sir Rattlebones gave you a gold key. Did you put it down somewhere?" |
+| Otherwise | "You have everything you need. To the chest!" |
 
 Hints are free and unlimited; the count is shown at the end.
 
@@ -187,8 +188,10 @@ Hints are free and unlimited; the count is shown at the end.
 
 - The puzzle is fixed and identical every playthrough.
 - Randomized flavor: response pools (unknown words, blocked moves, some skeleton small talk),
-  bookshelf titles, ambient lines on ~1 in 6 turns.
-- All randomness comes from a single injected `Random`; tests use a fixed seed and can disable ambient lines.
+  bookshelf titles, ambient lines on ~1 in 6 counted moves (never on the winning move).
+- All randomness comes from `EngineOptions.Random`. With `Flavor = false` the first line of every
+  pool is used and no ambient lines appear (engine tests); the golden walkthrough uses flavor on
+  with a fixed seed.
 
 ## 13. Out of scope
 

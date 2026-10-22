@@ -4,12 +4,15 @@ using CastleAdventure.Model;
 
 namespace CastleAdventure.Tests.Engine;
 
-/// <summary>A started castle game with shortcuts for setting up state in tests.</summary>
+/// <summary>
+/// A started castle game with shortcuts for setting up state in tests. Flavor is off by default,
+/// so every response is the canonical line and no ambient lines appear.
+/// </summary>
 internal sealed class TestGame
 {
-    public TestGame()
+    public TestGame(EngineOptions? options = null)
     {
-        Engine = new GameEngine(CastleWorld.Build());
+        Engine = new GameEngine(CastleWorld.Build(), options ?? new EngineOptions { Flavor = false });
         Opening = Engine.Start();
     }
 

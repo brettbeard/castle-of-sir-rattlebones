@@ -48,7 +48,15 @@ public static class Skeleton
                 NewState = SkeletonStates.Introduced,
             },
             new DialogueRule(
-                "\"Lovely to see you again! Ask me about anything: the castle, the treasure, my hat...\""),
+                "\"Lovely to see you again! Ask me about anything: the castle, the treasure, my hat...\"")
+            {
+                Alternatives =
+                [
+                    "\"Ah, my favourite visitor! Also my only visitor. What shall we talk about?\"",
+                    "\"Have I told you about my hat? Ask me about it. Go on.\"",
+                    "\"Back again! The castle, the treasure, the steward, my hat. Pick a topic, any topic.\"",
+                ],
+            },
         },
         Topics =
         {

@@ -19,8 +19,17 @@ public static class WorldValidator
         CheckLocks(world, problems);
         CheckCharacters(world, problems);
         CheckWinTrigger(world, problems);
+        CheckFlavor(world, problems);
 
         return problems;
+    }
+
+    private static void CheckFlavor(World world, List<string> problems)
+    {
+        foreach (var template in world.Flavor.UnknownWord.Where(t => !t.Contains("{0}", StringComparison.Ordinal)))
+        {
+            problems.Add($"Unknown-word flavor line \"{template}\" must contain {{0}} for the word.");
+        }
     }
 
     private static void CheckIdsUniqueAcrossKinds(World world, List<string> problems)

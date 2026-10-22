@@ -21,16 +21,16 @@ public sealed class CommandDispatcher
         [Verb.Search] = new SearchHandler(),
         [Verb.Talk] = new TalkHandler(),
         [Verb.Ask] = new AskHandler(),
+        [Verb.Help] = new HelpHandler(),
+        [Verb.Hint] = new HintHandler(),
+        [Verb.Restart] = new RestartHandler(),
         [Verb.Quit] = new QuitHandler(),
     };
 
     public GameResponse Dispatch(ParsedCommand command, GameContext context) => command.Verb switch
     {
         Verb.None => GameResponse.Say("Beg pardon?") with { CountedMove = false },
-        Verb.Unknown => GameResponse.Say($"I don't know the word '{command.UnknownWord}'.") with { CountedMove = false },
-        _ when _handlers.TryGetValue(command.Verb, out var handler) => handler.Handle(command, context),
-
-        // Verbs whose handlers arrive in later phases (see docs/implementation-plan.md).
-        _ => GameResponse.Say("That part of the castle is still under construction. Try something else for now."),
+        Verb.Unknown => GameResponse.Say(context.UnknownWordMessage(command.UnknownWord ?? string.Empty)) with { CountedMove = false },
+        _ => _handlers[command.Verb].Handle(command, context),
     };
 }

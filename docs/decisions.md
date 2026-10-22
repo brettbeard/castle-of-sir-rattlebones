@@ -131,3 +131,14 @@ Format: **Context** → **Decision** → **Consequences**.
   `Won` and returns the chest text; the victory banner and move summary are console text (`Program.cs`).
 - **Consequences:** The engine stays free of victory-screen content; the golden transcript ends at the
   chest text.
+
+## ADR-017 — Hints, flavor, and help travel with the World; engine owns counting (2026-10-22)
+
+- **Context:** Phase 6 content (hints, random pools, HELP card) must stay out of engine code, and
+  move counting must follow design.md §9 regardless of which handler runs.
+- **Decision:** `World` gains `Hints`, `Flavor` (`FlavorPools`), and `HelpText`, set by
+  `CastleWorld.Build()`. `GameEngine` increments `Moves` for counted responses, rejects unknown noun
+  words before dispatch (uncounted; ASK topics and GO targets exempt), and adds ambient lines.
+  Flavor pools list the canonical line first; `EngineOptions.Flavor = false` always uses it.
+- **Consequences:** Handlers stay simple; tests are deterministic without stubbing `Random`.
+  Any new random draw shifts the seeded golden transcript, so regenerate it deliberately.

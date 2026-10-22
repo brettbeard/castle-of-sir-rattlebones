@@ -15,7 +15,7 @@ public sealed class MoveHandler : ICommandHandler
 
         if (!context.CurrentRoom.Exits.TryGetValue(direction, out var exit))
         {
-            return GameResponse.Say("You can't go that way.");
+            return GameResponse.Say(context.Flavor.Pick(context.World.Flavor.NoExit, "You can't go that way."));
         }
 
         if (exit.LockId is { } lockId && context.State.IsLocked(lockId))

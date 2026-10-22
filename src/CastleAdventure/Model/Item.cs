@@ -18,6 +18,9 @@ public sealed class Item
 
     public required string Description { get; init; }
 
+    /// <summary>One of these is picked at random and added after the description on EXAMINE.</summary>
+    public List<string> RandomDetails { get; } = [];
+
     /// <summary>Text for READ. When null, READ says there's nothing written on it.</summary>
     public string? ReadText { get; init; }
 

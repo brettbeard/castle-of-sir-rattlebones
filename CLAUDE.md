@@ -41,7 +41,8 @@ Then review the diff of `tests/CastleAdventure.Tests/Walkthroughs/*.transcript.t
 | Add or rename an ID | `src/CastleAdventure/Content/Ids.cs` |
 | Change how a verb behaves | `src/CastleAdventure/Commands/<Verb>Handler.cs` |
 | Change words the parser understands | `src/CastleAdventure/Parsing/Vocabulary.cs` |
-| Change console I/O, colors, title flow | `src/CastleAdventure/Program.cs` |
+| Change the game loop, confirmations, victory screen | `src/CastleAdventure/Program.cs` |
+| Change wrapping, colours, prompts | `src/CastleAdventure/Output/{TextWrapper,ConsoleUi}.cs` |
 
 Tests mirror `src/` folders under `tests/CastleAdventure.Tests/`. Engine tests use
 `Engine/TestGame.cs` (`new TestGame().In(room).Holding(item).Do("command")`).
@@ -65,7 +66,9 @@ Program.cs (console, colors, wrapping, Y/N prompts)
 2. **`GameEngine` never touches `Console`.** All I/O goes through `Program.cs`.
 3. **No runtime NuGet packages** in `src/CastleAdventure`. The test project uses `MSTest.Sdk` only.
 4. **Zero warnings.** `TreatWarningsAsErrors` and `EnforceCodeStyleInBuild` are on; fix, don't suppress.
-5. **Randomness only through the injected `Random`.** Tests use a fixed seed.
+5. **Randomness only through `EngineOptions.Random`** (via `context.Flavor`). The first line of every
+   flavor pool is the canonical one used when flavor is off; engine tests (`TestGame`) run with
+   flavor off, the golden walkthrough with a fixed seed.
 6. **Use IDs from `Content/Ids.cs`**, never string literals for room/item/topic IDs.
 7. **Design changes go in `docs/design.md`** and get an entry in `docs/decisions.md`.
 8. **Never push to GitHub** unless the owner asks.

@@ -15,4 +15,7 @@ public sealed record DialogueRule(string Reply)
 
     /// <summary>If set, this item moves from the character to the player's inventory.</summary>
     public string? GivesItemId { get; init; }
+
+    /// <summary>Other wordings; one of <see cref="Reply"/> or these is picked at random when flavor is on.</summary>
+    public IReadOnlyList<string> Alternatives { get; init; } = [];
 }

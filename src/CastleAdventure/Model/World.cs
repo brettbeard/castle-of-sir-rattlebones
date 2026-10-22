@@ -46,6 +46,14 @@ public sealed class World
     /// <summary>Where each item starts: in a room or held by a character.</summary>
     public IReadOnlyDictionary<string, ItemLocation> InitialItemLocations { get; }
 
+    /// <summary>HINT tiers in priority order.</summary>
+    public IReadOnlyList<Hint> Hints { get; init; } = [];
+
+    public FlavorPools Flavor { get; init; } = new();
+
+    /// <summary>The reference card shown by HELP.</summary>
+    public string HelpText { get; init; } = "Try simple commands like LOOK, NORTH, or TAKE LAMP.";
+
     private static Dictionary<string, T> ToUniqueDictionary<T>(IEnumerable<T> values, Func<T, string> getId, string kind)
     {
         var result = new Dictionary<string, T>();
