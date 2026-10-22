@@ -92,14 +92,19 @@ Program.cs (console, colors, wrapping, Y/N prompts)
 
 **Add an item**
 1. Add an ID to `ItemIds`.
-2. Define it in the owning room file: name, aliases, description, `IsTakeable`, optional `TakeRefusal`,
-   `ReadText`, `IsHidden` + `RevealedBy`, `Lock`.
+2. Define it in the owning room file: name, aliases (all lowercase), description, `IsTakeable`,
+   `TakeRefusal` (required for scenery), optional `ReadText`, `IsHidden` + `RevealedBy`, `Lock` (a `KeyLock`).
 3. Add a test if it has behaviour beyond examine/take.
+
+**Validate content:** `WorldValidator.Validate(world)` lists structural problems (one-way exits,
+unreachable rooms, missing keys, unobtainable hidden items, bad dialogue states).
+`WorldIntegrityTests` runs it against the real castle.
 
 **Add a skeleton topic**
 1. Add an ID to `TopicIds`.
-2. Add a `Topic` in `Content/Characters/Skeleton.cs` with keywords, reply, and optional
-   `RequiredState` / `NewState` / `GivesItemId`.
+2. Add a `Topic` in `Content/Characters/Skeleton.cs` (use the `Simple(...)` helper for one-reply topics),
+   or give it several `DialogueRule`s with `WhenStates` / `NewState` / `GivesItemId`. Keywords must be
+   lowercase and unique across topics.
 3. Add a case to `SkeletonTests`.
 
 **Add a verb or synonym**

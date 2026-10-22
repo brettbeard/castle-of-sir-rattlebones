@@ -60,7 +60,8 @@ castle-of-sir-rattlebones/
 │  │  ├─ Hints.cs                  hint tiers (condition → text)
 │  │  ├─ FlavorText.cs             random response pools, book titles, ambient lines
 │  │  └─ GameText.cs               title art, intro, HELP card, victory text
-│  ├─ Model/                       Room, Item, Exit, Lock, Character, Topic, Direction, GameState, World
+│  ├─ Model/                       Room, Item, Exit, KeyLock, RevealTrigger, Character, Topic, DialogueRule,
+│  │                               Direction, World (static), GameState (mutable), ItemLocation, WorldValidator
 │  ├─ Parsing/                     Vocabulary, Parser, ParsedCommand, Verb
 │  ├─ Engine/                      GameEngine, GameResponse, NounResolver, Flavor (random picker)
 │  ├─ Commands/                    CommandDispatcher, ICommandHandler, <Verb>Handler.cs files
@@ -71,7 +72,8 @@ castle-of-sir-rattlebones/
    ├─ Parsing/ParserTests.cs
    ├─ Engine/                      MovementTests, ItemTests, LockTests, SkeletonTests,
    │                               HintTests, MoveCounterTests, RestartTests
-   ├─ Content/WorldIntegrityTests.cs
+   ├─ Model/                       DirectionTests, WorldTests, WorldValidatorTests, GameStateTests
+   ├─ Content/                     WorldIntegrityTests, CastleWorldTests
    ├─ Output/TextWrapperTests.cs
    └─ Walkthroughs/
       ├─ WalkthroughTests.cs       runs *.commands.txt; compares to golden transcript
@@ -95,8 +97,11 @@ Program.cs ◄── TextWrapper + color ◄── GameResponse
 Generic, data-driven engine features (content declares them; engine executes them):
 
 - **Hidden items** with `RevealedBy` (item ID + verb set), e.g. examining the cloth reveals the silver key.
-- **Locks** on exits and items: `KeyId`, `LockedMessage`, `NoKeyMessage`, `WrongKeyMessages`.
-- **Character topics** with optional `RequiredState`, `NewState`, `GivesItemId`, and response text.
+- **Locks** (`KeyLock`) defined on an item; exits refer to them by `LockId`. Locked state is in `GameState`.
+- **Character dialogue** as `DialogueRule`s (TALK rules and per-topic rules): first rule whose
+  `WhenStates` includes the current state wins; optional `NewState` and `GivesItemId`.
+- **World vs GameState** — `World` is the immutable definition built from content; everything that
+  changes (room, item locations, reveals, unlocks, character states, counters) is in `GameState`.
 - **Take refusals** — per-item custom text, optionally conditional on character state.
 - **Win trigger** — declared on an item (opening `chest` wins).
 

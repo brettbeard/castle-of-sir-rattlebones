@@ -13,7 +13,7 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 | Phase | Name | Status | Commit |
 |---|---|---|---|
 | 1 | Scaffold | Done | Phase 1 commit |
-| 2 | Model and world data | Not started | |
+| 2 | Model and world data | Done | Phase 2 commit |
 | 3 | Parser | Not started | |
 | 4 | Engine core (**milestone**) | Not started | |
 | 5 | Puzzles | Not started | |
@@ -51,19 +51,20 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 **Goal:** the full castle exists as data and is structurally valid.
 **Depends on:** Phase 1.
 
-- [ ] 2.1 `Model/Direction.cs` (N, S, E, W, Up, Down) + opposite/display helpers
-- [ ] 2.2 `Model/Lock.cs` (KeyId, IsLocked, LockedMessage, NoKeyMessage, WrongKeyMessages)
-- [ ] 2.3 `Model/Exit.cs` (target room ID, optional Lock, optional blocked message)
-- [ ] 2.4 `Model/Item.cs` (Id, Name, Aliases, Description, ReadText, IsTakeable, TakeRefusal, IsHidden, RevealedBy, Lock, IsWinTrigger)
-- [ ] 2.5 `Model/Topic.cs` and `Model/Character.cs` (states, topics, unknown-topic reply)
-- [ ] 2.6 `Model/Room.cs` (Id, Name, Description, Exits, item IDs, character IDs)
-- [ ] 2.7 `Model/World.cs` (rooms/items/characters by ID, start room) and `Model/GameState.cs` (current room, inventory, visited, revealed, character states, counters, Won)
-- [ ] 2.8 `Content/Ids.cs` — all room, item, character, topic IDs as constants
-- [ ] 2.9 `Content/Rooms/*.cs` — seven room files with exits and items per `design.md` §2 and §6 (first-draft prose)
-- [ ] 2.10 `Content/Characters/Skeleton.cs` — states and topics per `design.md` §5
-- [ ] 2.11 `Content/CastleWorld.cs` — `Build()` composes a fresh `World`
-- [ ] 2.12 `tests/.../TestWorldBuilder.cs`
-- [ ] 2.13 `Content/WorldIntegrityTests.cs`: unique IDs; every exit target exists; exits are bidirectional; every lock KeyId is an item; every RevealedBy references an existing item; start room exists; exactly one win trigger
+- [x] 2.1 `Model/Direction.cs` (N, S, E, W, Up, Down) + `DirectionExtensions` (Opposite, DisplayName)
+- [x] 2.2 `Model/KeyLock.cs` (KeyId, UnlockMessage, LockedMessage, NoKeyMessage, AlreadyUnlockedMessage, WrongKeyMessages). Named `KeyLock` because `Lock` collides with `System.Threading.Lock`; locked state lives in `GameState`
+- [x] 2.3 `Model/Exit.cs` (target room ID, optional LockId, BlockedMessage)
+- [x] 2.4 `Model/Item.cs` (Id, Name, Article, Aliases, Description, ReadText, IsTakeable, TakeRefusal, IsHidden, RevealedBy, Lock, OpenedText, IsWinTrigger) + `RevealTrigger`, `RevealVerbs`
+- [x] 2.5 `Model/Topic.cs`, `Model/DialogueRule.cs`, `Model/Character.cs` (states, presence/description by state, talk rules, topics, held items, refusals)
+- [x] 2.6 `Model/Room.cs` (Id, Name, Description, Exits, initial Items, Characters)
+- [x] 2.7 `Model/World.cs` (immutable definition, indexes, initial item locations) and `Model/GameState.cs` (current room, item locations, revealed, unlocked, visited, character states, counters, HasWon) + `ItemLocation`, `LocationKind`
+- [x] 2.8 `Content/Ids.cs` — room, item, lock, character, state, and topic IDs as constants
+- [x] 2.9 `Content/Rooms/*.cs` — seven room files with exits and items per `design.md` §2 and §6 (first-draft prose)
+- [x] 2.10 `Content/Characters/Skeleton.cs` — states and topics per `design.md` §5 (plus a SILVER KEY topic)
+- [x] 2.11 `Content/CastleWorld.cs` — `Build()` composes a fresh `World`
+- [x] 2.12 `tests/.../TestWorldBuilder.cs`
+- [x] 2.13 `Model/WorldValidator.cs` + `Content/WorldIntegrityTests.cs`: unique IDs; exits exist and are bidirectional; locks/keys/reveals reference real items; all rooms reachable; hidden items obtainable; character states consistent; exactly one win trigger
+- [x] 2.14 *(added)* `Content/CastleWorldTests.cs` pinning the map, locks, key placement, and skeleton dialogue to `design.md`; `Model/` tests for Direction, World, WorldValidator (each failure kind), GameState
 
 **Exit criteria:** integrity tests green.
 **Commit:** `Phase 2: domain model and castle world data`
@@ -154,6 +155,8 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 **Depends on:** Phase 6.
 
 - [ ] 7.1 Prose pass on every room, item, topic, and message (tone: atmospheric, lightly comic)
+- [ ] 7.1a Make every noun mentioned in room prose examinable (e.g. hearth, weeds, desk, straw, empty shelves) or remove it
+- [ ] 7.1b State-aware text where it reads oddly after progress (altar after the key is taken, hat bulge after the key is given)
 - [ ] 7.2 Manual playthrough: pacing (10–20 min target), wrapping at 80 and narrower widths, colors
 - [ ] 7.3 Fix issues found; regenerate golden transcript
 - [ ] 7.4 Update `docs/walkthrough.md`, `CLAUDE.md`, `README.md` to match the shipped game

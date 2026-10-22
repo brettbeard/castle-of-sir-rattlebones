@@ -110,3 +110,14 @@ Format: **Context** → **Decision** → **Consequences**.
   restore failed with NU1301 (401).
 - **Decision:** Add `nuget.config` that clears inherited sources and uses nuget.org only.
 - **Consequences:** Restore is reproducible on any machine and in CI.
+
+## ADR-015 — Immutable World, mutable GameState; dialogue as ordered rules (2026-10-22)
+
+- **Context:** RESTART must reset everything; tests need cheap, isolated setups; skeleton replies
+  depend on state.
+- **Decision:** `World` is built once from content and never changes. All play state (current room,
+  item locations, reveals, unlocks, character states, counters) lives in `GameState`, created by
+  `GameState.NewGame(world)`. Character replies are ordered `DialogueRule`s selected by state.
+  The lock type is `KeyLock` (`Lock` clashes with `System.Threading.Lock` under implicit usings).
+- **Consequences:** RESTART = new `GameState`. A structural `WorldValidator` can check content
+  without running the game.
