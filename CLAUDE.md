@@ -43,7 +43,8 @@ Then review the diff of `tests/CastleAdventure.Tests/Walkthroughs/*.transcript.t
 | Change words the parser understands | `src/CastleAdventure/Parsing/Vocabulary.cs` |
 | Change console I/O, colors, title flow | `src/CastleAdventure/Program.cs` |
 
-Tests mirror `src/` folders under `tests/CastleAdventure.Tests/`.
+Tests mirror `src/` folders under `tests/CastleAdventure.Tests/`. Engine tests use
+`Engine/TestGame.cs` (`new TestGame().In(room).Holding(item).Do("command")`).
 
 ## Architecture in one picture
 

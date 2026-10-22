@@ -63,15 +63,17 @@ castle-of-sir-rattlebones/
 │  ├─ Model/                       Room, Item, Exit, KeyLock, RevealTrigger, Character, Topic, DialogueRule,
 │  │                               Direction, World (static), GameState (mutable), ItemLocation, WorldValidator
 │  ├─ Parsing/                     Vocabulary, Parser, ParsedCommand, Verb
-│  ├─ Engine/                      GameEngine, GameResponse, NounResolver, Flavor (random picker)
+│  ├─ Engine/                      GameEngine, GameContext, GameResponse (TextBlock, TextStyle),
+│  │                               NounResolver (NounResolution, NounScope), RoomDescriber, Prose,
+│  │                               Flavor (random picker, Phase 6)
 │  ├─ Commands/                    CommandDispatcher, ICommandHandler, <Verb>Handler.cs files
 │  └─ Output/TextWrapper.cs        pure word-wrap function
 └─ tests/CastleAdventure.Tests/
    ├─ CastleAdventure.Tests.csproj
    ├─ TestWorldBuilder.cs          helpers for small custom worlds
    ├─ Parsing/ParserTests.cs
-   ├─ Engine/                      MovementTests, ItemTests, LockTests, SkeletonTests,
-   │                               HintTests, MoveCounterTests, RestartTests
+   ├─ Engine/                      TestGame (helper), MovementTests, ItemTests, EngineBasicsTests,
+   │                               LockTests, SkeletonTests, HintTests, MoveCounterTests, RestartTests
    ├─ Model/                       DirectionTests, WorldTests, WorldValidatorTests, GameStateTests
    ├─ Content/                     WorldIntegrityTests, CastleWorldTests
    ├─ Output/TextWrapperTests.cs

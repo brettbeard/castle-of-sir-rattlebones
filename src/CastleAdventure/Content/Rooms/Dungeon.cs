@@ -33,7 +33,7 @@ public static class Dungeon
             {
                 Id = ItemIds.FeatheredHat,
                 Name = "feathered hat",
-                Aliases = { "hat", "feather", "plume" },
+                Aliases = { "hat", "feather", "plume", "skeleton hat" },
                 Description =
                     "A wide-brimmed hat with a single bedraggled plume, perched on the skeleton's skull at a rakish angle. " +
                     "The crown bulges slightly, as if something were tucked beneath it.",

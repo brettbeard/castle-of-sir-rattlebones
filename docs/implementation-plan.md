@@ -15,7 +15,7 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 | 1 | Scaffold | Done | Phase 1 commit |
 | 2 | Model and world data | Done | Phase 2 commit |
 | 3 | Parser | Done | Phase 3 commit |
-| 4 | Engine core (**milestone**) | Not started | |
+| 4 | Engine core (**milestone**) | Done | Phase 4 commit |
 | 5 | Puzzles | Not started | |
 | 6 | Meta and polish | Not started | |
 | 7 | Content pass and release | Not started | |
@@ -92,15 +92,15 @@ Phased, checkable task list. Design: [`design.md`](design.md). Architecture: [`p
 **Goal:** a playable, explorable castle with no puzzles yet.
 **Depends on:** Phases 2 and 3.
 
-- [ ] 4.1 `Engine/GameResponse.cs` (Text, Won, RequestQuit, RequestRestart, CountedMove)
-- [ ] 4.2 `Engine/NounResolver.cs`: aliases ∩ scope (room items, inventory, present characters); hidden items excluded; ambiguity result; "You don't see any X here."
-- [ ] 4.3 `Commands/ICommandHandler.cs`, `Commands/CommandDispatcher.cs`
-- [ ] 4.4 `MoveHandler` (locked exits block with lock message), `LookHandler` (full vs brief on revisit, exits list), `ExamineHandler`, `ReadHandler`
-- [ ] 4.5 `TakeHandler` (scenery refusals), `DropHandler`, `InventoryHandler`
-- [ ] 4.6 `Engine/GameEngine.cs`: construct from `World` + `Random`; `Execute`; unknown-word replies; opening room text
-- [ ] 4.7 `Program.cs`: plain read–execute–print loop with `> ` prompt (no title/colors yet)
-- [ ] 4.8 Tests: `MovementTests` (every exit both ways, full and short directions, up/down, blocked north), `ItemTests` (take/drop/inventory, scenery refusal, not-here message, hidden items not takeable)
-- [ ] 4.9 Manual check: `dotnet run`, walk every room
+- [x] 4.1 `Engine/GameResponse.cs` (styled `TextBlock`s + CountedMove, RequestQuit, RequestRestart, Won); `TextBlock`, `TextStyle`
+- [x] 4.2 `Engine/NounResolver.cs` + `NounResolution`, `NounScope`: aliases ∩ scope (room items, inventory, present characters); hidden items excluded; ambiguity prompt; "I don't know the word…" vs "You don't see any X here."
+- [x] 4.3 `Commands/ICommandHandler.cs`, `Commands/CommandDispatcher.cs` (unregistered verbs reply "still under construction" until their phase)
+- [x] 4.4 `MoveHandler` (locked exits show BlockedMessage), `LookHandler`, `RoomDescriber` (full vs brief on revisit, characters, item list, exits), `ExamineHandler`, `ReadHandler`
+- [x] 4.5 `TakeHandler` (scenery and character refusals), `DropHandler`, `InventoryHandler`; plus minimal `QuitHandler` (confirmation in Phase 6)
+- [x] 4.6 `Engine/GameEngine.cs` + `GameContext`, `Prose`: construct from `World`; `Start`; `Execute`. (`Random` is added in Phase 6 when flavor text needs it.)
+- [x] 4.7 `Program.cs`: plain read–execute–print loop with `> ` prompt; exits on QUIT or end of input
+- [x] 4.8 Tests: `MovementTests` (every exit with full names, abbreviations, and GO; up/down; blocked north; brief revisits), `ItemTests` (take/drop/inventory/examine/read, refusals, hidden items, ambiguity, unknown words), `EngineBasicsTests` (empty/unknown input, odd input never throws)
+- [x] 4.9 Manual check: piped a scripted walk through every room into `dotnet run`
 
 **Exit criteria:** milestone behaviour per `plan.md` §6; all tests green.
 **Commit:** `Phase 4: engine core — explorable castle (milestone)`

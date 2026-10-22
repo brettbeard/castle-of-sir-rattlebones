@@ -18,7 +18,7 @@ public sealed class Item
 
     public required string Description { get; init; }
 
-    /// <summary>Text for READ. When null, READ falls back to the description.</summary>
+    /// <summary>Text for READ. When null, READ says there's nothing written on it.</summary>
     public string? ReadText { get; init; }
 
     public bool IsTakeable { get; init; }
